@@ -1,11 +1,13 @@
 import argparse
 import logging
+import subprocess
 import sys
 from pathlib import Path
 
 from page_break.audiveris import AudiverisOptions, Binarization
 from page_break.pipeline import convert_score
 
+GUI_APP_PATH = Path(__file__).parent / 'gui' / 'app.py'
 LOG_LEVELS = ['DEBUG', 'INFO', 'WARNING', 'ERROR']
 LOG_FORMAT = '%(levelname)s %(name)s: %(message)s'
 
@@ -14,6 +16,15 @@ logger = logging.getLogger(__name__)
 
 def main(argv: list[str] | None = None) -> int:
     args = _parse_args(argv)
+    if args.command == 'gui':
+        return subprocess.call([
+            sys.executable, '-m', 'streamlit', 'run', str(GUI_APP_PATH),
+            '--server.port', str(args.port),
+            '--server.address', 'localhost',
+            '--client.toolbarMode', 'minimal',
+            '--browser.gatherUsageStats', 'false',
+        ])
+
     logging.basicConfig(level=args.log_level, format=LOG_FORMAT)
     try:
         failed_page_numbers = convert_score(
@@ -43,6 +54,9 @@ def _parse_args(argv: list[str] | None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(prog='page-break', description='Convert score PDFs and images into MusicXML.')
     commands = parser.add_subparsers(dest='command', required=True)
 
+    gui = commands.add_parser('gui', help='Open the web GUI in the browser')
+    gui.add_argument('--port', type=int, default=6006, help='Port to serve the GUI on')
+
     convert = commands.add_parser('convert', help='Convert one score')
     convert.add_argument('input_source', help='Local file path or direct URL')
     convert.add_argument('output_path', type=Path, help='Destination .musicxml path')
@@ -62,6 +76,6 @@ def _parse_args(argv: list[str] | None) -> argparse.Namespace:
     )
 
     args = parser.parse_args(argv)
-    if args.threshold is not None and args.binarization != Binarization.GLOBAL:
+    if args.command == 'convert' and args.threshold is not None and args.binarization != Binarization.GLOBAL:
         parser.error('--threshold needs --binarization global')
     return args

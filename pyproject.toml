@@ -12,6 +12,7 @@ dependencies = [
     "pillow>=12.2",
     "pypdfium2>=5",
     "requests>=2.33",
+    "streamlit>=1.56",
 ]
 
 [project.urls]

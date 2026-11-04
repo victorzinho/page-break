@@ -61,3 +61,21 @@ def test_convert_rejects_threshold_without_global_binarization(capsys: pytest.Ca
     # THEN
     assert '--threshold needs --binarization global' in capsys.readouterr().err
 
+
+def test_gui_runs_streamlit_on_the_bundled_app(monkeypatch: pytest.MonkeyPatch) -> None:
+    # GIVEN
+    commands: list[list[str]] = []
+    def fake_call(command: list[str]) -> int:
+        commands.append(command)
+        return 0
+
+    monkeypatch.setattr('page_break.cli.subprocess.call', fake_call)
+
+    # WHEN
+    exit_code = cli.main(['gui', '--port', '9000'])
+
+    # THEN
+    assert exit_code == 0
+    assert commands[0][1:5] == ['-m', 'streamlit', 'run', str(cli.GUI_APP_PATH)]
+    assert commands[0][5:7] == ['--server.port', '9000']
+    assert cli.GUI_APP_PATH.is_file()
