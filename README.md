@@ -1,5 +1,7 @@
 # Page Break
 
+[![CI](https://github.com/victorzinho/page-break/actions/workflows/ci.yml/badge.svg)](https://github.com/victorzinho/page-break/actions/workflows/ci.yml)
+
 Turns score PDFs and images into MusicXML you can open in MuseScore, Sibelius, Dorico or Finale.
 
 It wraps the [Audiveris](https://github.com/Audiveris/audiveris) optical music recognition engine with what messy
@@ -8,6 +10,8 @@ reports.
 
 Clean printed or exported scores work well. Phone photos, handwritten annotations, low contrast and tuplet-heavy
 passages degrade results quickly.
+
+<img src="docs/gui.png" alt="The Page Break GUI after converting a score page" width="450">
 
 ## Quick setup
 
