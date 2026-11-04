@@ -1,0 +1,26 @@
+2026-11-04 12:39:29,401 INFO [page-002]                 Book.java:560  | 1 sheet in /tmp/page-break/audiveris/page-002.png
+2026-11-04 12:39:29,496 INFO []                 Book.java:2565 | Stored /book.xml
+2026-11-04 12:39:29,496 INFO []                 Book.java:2525 | Book stored as /tmp/page-break/audiveris/out/page-002.omr
+2026-11-04 12:39:29,497 INFO []                 Book.java:1929 | Book reaching PAGE on sheets:[#1]
+2026-11-04 12:39:29,498 INFO [page-002]       StepMonitoring.java:98   | LOAD
+2026-11-04 12:39:29,528 INFO [page-002]            SheetStub.java:1278 | Loaded image #1 1240x1754 from /tmp/page-break/audiveris/page-002.png
+2026-11-04 12:39:29,531 INFO [page-002]       StepMonitoring.java:98   | BINARY
+2026-11-04 12:39:29,708 INFO [page-002]       StepMonitoring.java:98   | SCALE
+2026-11-04 12:39:29,712 INFO [page-002]                 Book.java:543  | Created scores: []
+2026-11-04 12:39:29,712 INFO [page-002]            SheetStub.java:1194 | Sheet page-002 flagged as invalid.
+2026-11-04 12:39:29,713 WARN [page-002]                 Book.java:2044 | Error processing stub
+2026-11-04 12:39:29,713 INFO [page-002]                 Book.java:2584 | Book{page-002} storing
+2026-11-04 12:39:29,724 INFO [page-002]                 Book.java:2565 | Stored /book.xml
+2026-11-04 12:39:29,763 INFO [page-002]           DataHolder.java:348  | Stored /sheet#1/BINARY.png
+2026-11-04 12:39:29,946 INFO [page-002]                Sheet.java:1583 | Stored /sheet#1/sheet#1.xml
+2026-11-04 12:39:29,946 INFO [page-002]                 Book.java:2525 | Book stored as /tmp/page-break/audiveris/out/page-002.omr
+2026-11-04 12:39:29,947 INFO [page-002]            SheetStub.java:1655 | Sheet disposed
+2026-11-04 12:39:29,959 INFO [page-002]                 Book.java:2050 | End of Stub#1
+2026-11-04 12:39:29,960 INFO [page-002]                 Book.java:2057 | End of Book{page-002}
+2026-11-04 12:39:29,960 WARN [page-002]                  CLI.java:956  | Exception occurred java.lang.Exception: Error in reaching step PAGE
+java.lang.Exception: Error in reaching step PAGE
+	at org.audiveris.omr.CLI$ProcessingTask.processBook(CLI.java:893)
+	at org.audiveris.omr.CLI$CliTask.call(CLI.java:513)
+	at org.audiveris.omr.Main.runBatchTasks(Main.java:361)
+	at org.audiveris.omr.Main.main(Main.java:263)
+	at Audiveris.main(Audiveris.java:50)

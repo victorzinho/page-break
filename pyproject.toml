@@ -1,0 +1,62 @@
+[project]
+name = "page-break"
+version = "0.1.0a1"
+description = "Convert score PDFs and images into MusicXML with Audiveris"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Víctor González" }]
+requires-python = ">=3.12"
+dependencies = [
+    "lxml>=5.4",
+    "pillow>=12.2",
+    "pypdfium2>=5",
+    "requests>=2.33",
+]
+
+[project.urls]
+Repository = "https://github.com/victorzinho/page-break"
+Issues = "https://github.com/victorzinho/page-break/issues"
+
+[project.scripts]
+page-break = "page_break.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.11.7,<0.12"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "basedpyright>=1.40.1",
+    "lxml-stubs>=0.5.1",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.16.9",
+    "types-requests>=2.32",
+]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "UP"]
+
+[tool.basedpyright]
+include = ["src", "tests", "typings"]
+typeCheckingMode = "strict"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--import-mode=importlib --strict-markers"
+
+[tool.coverage.run]
+source = ["src"]
+branch = true
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true
+skip_covered = true
